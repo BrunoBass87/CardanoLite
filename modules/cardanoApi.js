@@ -3,7 +3,7 @@ const Blockfrost = require("@blockfrost/blockfrost-js");
 
 //create instace for blockfrost
 const API = new Blockfrost.BlockFrostAPI({
-    projectId: "MasterKey",
+    projectId: "MasterKey", "use you api key"
   });
 
 
