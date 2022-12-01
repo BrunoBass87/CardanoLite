@@ -102,3 +102,15 @@ get {
    amount     
   }  
   
+/walletinfo = wallet address (unit will contain the id of the token, to find out the name you must use the function /tokeninfo to get the name)
+{
+  address,
+    amount: 
+        {
+            "unit": "lovelace",
+            "quantity": "3779870"
+        },
+  stake_address,
+  type,
+  script
+}        

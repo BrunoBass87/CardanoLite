@@ -1,7 +1,7 @@
 const express = require('express');
 const Cardano = require('./modules/cardanoApi');
 const app = express();
-Hola
+
 
 // App setting
 app.set('appName','AnetaApi');
@@ -54,7 +54,11 @@ app.get('/stakewithdrawals/:stakeId', (req, res) => {
     Cardano.API.getstakeWithdrawals(req.params.stakeId).then(val => res.json(val));        
    }
 );
- 
+// get wallet information
+app.get('/walletinfo/:walletId', (req, res) => {                      
+    Cardano.API.getsaccountInfo(req.params.walletId).then(val => res.json(val));        
+   }
+); 
 
 
 

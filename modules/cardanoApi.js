@@ -3,12 +3,9 @@ const Blockfrost = require("@blockfrost/blockfrost-js");
 
 //create instace for blockfrost
 const API = new Blockfrost.BlockFrostAPI({
-    projectId: "MasterKey", "use you api key"
+    projectId: "MasterKey", // please use your api key
   });
 
-
-//Ctosi address = 
-//Ctosi = 
 
 class CardanoExplorer {
 
@@ -114,7 +111,17 @@ class CardanoExplorer {
                 return err;
           }
       }      
+      async getsaccountInfo(walletid) {        
+        try {            
+                let j_son =  await API.addresses(walletid);                                      
+                return j_son;                                     
+            }
+        catch (err) {
+                return err;
+          }
+      }      
       
+
 
 }
 
