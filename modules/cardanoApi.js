@@ -3,28 +3,30 @@ const Blockfrost = require("@blockfrost/blockfrost-js");
 
 //create instace for blockfrost
 const API = new Blockfrost.BlockFrostAPI({
-    projectId: "MasterKey", // please use your api key
+    projectId: "mainnetOE4cMTfbMhgVwZvG5Zq8jVORaWMi3WZy", // please use your api key
   });
 
 
 class CardanoExplorer {
-
+    //token info
     async getdataToken(token) {
         const datason = {  }
         try {                 
-                let j_son =  await API.assetsById(token);
+                let j_son =  await API.assetsById(token);                
                 datason["name"] = j_son.onchain_metadata["name"];
                 datason["image"] = j_son.onchain_metadata["image"];
                 datason["symbol"] = j_son.onchain_metadata["symbol"];
                 datason["description"] = j_son.onchain_metadata["description"];
                 datason["totalSupply"] = j_son.onchain_metadata["totalSupply"];                  
                 return datason;
+
             }
         catch (err) {
                 return err;
           }
       }
 
+      //token history tx
       async gethistoryToken(token) {
         const datason = {  }
         try {                 
@@ -39,6 +41,7 @@ class CardanoExplorer {
           }
       }
 
+      //get token last transactions 
       async getassetsTransactions(token) {        
         try {                 
                 let j_son =  await API.assetsTransactions(token,{ page: 1, count: 10, order: "desc" });                      
@@ -48,7 +51,7 @@ class CardanoExplorer {
                 return err;
           }
       }
-
+      // network health
       async getHealth() {        
         try {                 
                 let health =  await API.health(); 
@@ -58,7 +61,8 @@ class CardanoExplorer {
                 return err;
           }
       }      
-
+      
+      // get pool information
       async getpoolInfo(idpool) {
         const datason = {  }
         try {                 
@@ -69,7 +73,19 @@ class CardanoExplorer {
                 return err;
           }
       }
+     // get last 30 delegator pool 
+     async getpoolDelegators(idpool) {
+        const datason = {  }
+        try {                 
+                let j_son =  await API.poolsByIdDelegators(idpool,{ page: 1, count: 30, order: "desc" });               
+                return j_son;                                     
+            }
+        catch (err) {
+                return err;
+          }
+      }      
 
+      // get stake information
       async getstakeInfo(idstake) {        
         const datason = {  }
         try {                 
@@ -81,9 +97,9 @@ class CardanoExplorer {
           }
       }
 
+      // get stake hitory by epoch
       async getstakeHistory(idstake) {        
-        try {             
-                console.log("asdas");
+        try {            
                 let j_son =  await API.accountsHistory(idstake,{ page: 1, count: 20, order: "desc" });                                      
                 return j_son;                                     
             }
@@ -91,7 +107,7 @@ class CardanoExplorer {
                 return err;
           }
       }
-
+      // get rewards from stake
       async getstakeRewards(idstake) {        
         try {           
                 let j_son =  await API.accountsRewards(idstake,{ page: 1, count: 20, order: "desc" });                                      
@@ -102,6 +118,7 @@ class CardanoExplorer {
           }
       }
 
+      //get withdrawals from stake
       async getstakeWithdrawals(idstake) {        
         try {            
                 let j_son =  await API.accountsWithdrawals(idstake,{ page: 1, count: 20, order: "desc" });                                      
@@ -111,6 +128,8 @@ class CardanoExplorer {
                 return err;
           }
       }      
+      
+      //get wallet information  
       async getsaccountInfo(walletid) {        
         try {            
                 let j_son =  await API.addresses(walletid);                                      
@@ -120,6 +139,17 @@ class CardanoExplorer {
                 return err;
           }
       }      
+
+      //get holders from a specific token (too slow!)
+      async getHolders(token) {        
+        try {                
+                let j_son =  await API.assetsAddresses(token,{ page: 1, count: 5, order: "desc" });                                      
+                return j_son;                                     
+            }
+        catch (err) {
+                return err;
+          }
+      }            
       
 
 

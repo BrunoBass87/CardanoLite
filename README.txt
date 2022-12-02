@@ -67,6 +67,13 @@ get {
   retirement    
  }
 
+ /pooldelegators = pool id
+
+ {
+   address,
+   live_stake 
+  }
+
 /stake  =  stake address account (reward account in a pool)
 {
   stake_address,
@@ -113,4 +120,10 @@ get {
   stake_address,
   type,
   script
-}        
+}       
+
+/holders = tokenid (the las 5 holders (this function its too slow, some time give time out)
+ {
+        address,
+        quantity
+    }

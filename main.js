@@ -34,6 +34,12 @@ app.get('/health', (req, res) => {
     Cardano.API.getpoolInfo(req.params.poolId).then(val => res.json(val));        
    }
 );
+// get pool delegator, last 30.
+app.get('/pooldelegators/:poolId', (req, res) => {                      
+    Cardano.API.getpoolDelegators(req.params.poolId).then(val => res.json(val));        
+   }
+);
+
 // get stake information
 app.get('/stake/:stakeId', (req, res) => {                      
     Cardano.API.getstakeInfo(req.params.stakeId).then(val => res.json(val));        
@@ -57,6 +63,11 @@ app.get('/stakewithdrawals/:stakeId', (req, res) => {
 // get wallet information
 app.get('/walletinfo/:walletId', (req, res) => {                      
     Cardano.API.getsaccountInfo(req.params.walletId).then(val => res.json(val));        
+   }
+); 
+// get last 5 holders
+app.get('/holders/:tokeninfo', (req, res) => {                      
+    Cardano.API.getHolders(req.params.tokeninfo).then(val => res.json(val));        
    }
 ); 
 
