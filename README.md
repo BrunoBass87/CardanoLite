@@ -1,3 +1,3 @@
 
-CardanoLite API Beta version 0.15
+CardanoLite API Beta version 0.25
 
